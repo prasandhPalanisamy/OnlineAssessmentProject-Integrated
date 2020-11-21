@@ -1,0 +1,61 @@
+﻿@model IEnumerable<OnlineAssessmentApplication.ViewModel.QuestionViewModel>
+
+@{
+    ViewBag.Title = "DisplayQuestions";
+}
+
+<h2>DisplayQuestions</h2>
+
+<p>
+    @Html.ActionLink("Add Question", "CreateQuestions", "Question", new { @class = "btn btn-primary" })
+</p>
+
+@using (Html.BeginForm("DisplayQuestions", "Question", FormMethod.Get))
+{
+
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Question)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestId)
+        </th>
+        <th>
+            Action
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestId)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "EditQuestion", new { questionId = item.QuestionId })
+                @Html.ActionLink("Delete", "DeleteQuestion", new { questionId = item.QuestionId })
+            </td>
+            <td>
+                @Html.ActionLink("View Options", "DisplayAnswers", "Answer", new { questionId = item.QuestionId, testId = item.TestId }, null)
+            </td>
+        </tr>
+    }
+
+
+</table>
+

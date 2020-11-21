@@ -1,0 +1,140 @@
+﻿body {
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+.nav-link {
+    color: #000000;
+    margin-right: 2rem;
+    margin-left: 2rem;
+    font-size: 1.3rem;
+}
+
+    .nav-link:hover {
+        color: blue;
+    }
+
+.nav-item:hover {
+    text-decoration: underline;
+}
+
+.list-group-item {
+    padding: 2rem;
+}
+
+.brand_icon {
+    font-size: 2.5rem;
+}
+
+.brand_img {
+    width: 60px;
+    height: 60px;
+}
+
+.front_img {
+    width: 100%;
+    height: 650px;
+    position: relative;
+    z-index: -1;
+}
+
+.view_content {
+    border-radius: 20px;
+    width: 25%;
+    height: 350px;
+    background-color: white;
+    position: absolute;
+    top: 35%;
+    right: 100px;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+/*Dashboard*/
+.sideBar {
+    background-color: aquamarine;
+    height: 300px;
+}
+/*Icons*/
+.icon {
+    font-size: 20px;
+}
+/*Captcha*/
+.captcha_part {
+    text-align: center
+}
+
+.field-validation-error {
+    color: red;
+}
+
+.createtestform {
+    background-color: #fcfcfc;
+    border-radius: 16px;
+    padding: 15px 25px 25px 25px;
+    color: #454545;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.14);
+    margin-top: 40px;
+}
+
+.inputName {
+    border: 0.8px solid #cacaca;
+    border-radius: 5px;
+    font-size: 14px;
+    height: 41px;
+    width: 100%;
+    max-width: none;
+    padding: .375rem .75rem;
+}
+
+.title {
+    text-align: center;
+    font-size: xx-large;
+}
+
+.errorSpan {
+    color: red;
+}
+
+.passcode {
+    position: relative;
+}
+
+.passcode-btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    font-size: 0.9rem;
+    text-decoration: none;
+    min-height: 1rem;
+    min-width: 8rem;
+    border: 0.06rem solid #0091FF;
+    padding: 0.5rem 0.8rem;
+    background-color: #0091FF;
+    border-top-right-radius: 0.3125rem;
+    border-bottom-right-radius: 0.3125rem;
+    height: 2.5625rem;
+    font-weight: 500;
+}
+
+    .passcode-btn:hover {
+        text-decoration: none;
+        cursor: pointer;
+        color: #fff;
+    }

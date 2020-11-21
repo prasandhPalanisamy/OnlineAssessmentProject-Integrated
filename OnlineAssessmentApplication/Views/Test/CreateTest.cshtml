@@ -1,0 +1,93 @@
+﻿@model OnlineAssessmentApplication.ViewModel.TestViewModel
+
+@{
+    ViewBag.Title = "CreateTest";
+}
+
+<script src="~/Content/validation.js"></script>
+<div class="container">
+
+    @using (Html.BeginForm("CreateTest", "Test", FormMethod.Post))
+    {
+
+        <div class="col-sm-12">
+            <div class="createtestform">
+                <div class="title">Create Test</div>
+                <div class="form-row">
+                    @Html.LabelFor(Model => Model.TestName)
+
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(Model => Model.TestName, new { @class = "inputName", placeholder = "Name of the Test" })
+                        @Html.ValidationMessageFor(Model => Model.TestName, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(Model => Model.Subject)
+                    <div class="col-md-12">
+                        @Html.EnumDropDownListFor(Model => Model.Subject, "Choose Subject", new { @class = "inputName" })
+                        @Html.ValidationMessageFor(Model => Model.Subject, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(Model => Model.Grade)
+                    <div class="col-md-12">
+                        @Html.EnumDropDownListFor(model => model.Grade, "Choose Grade", new { @class = "inputName" })
+                        @Html.ValidationMessageFor(Model => Model.Grade, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(Model => Model.Passcode)
+                    <div class="col-md-12">
+                        <div class="passcode">
+                            @Html.TextBoxFor(Model => Model.Passcode, new { @class = "inputName", @readonly = "readonly" })
+                            <a class="passcode-btn" onclick="GeneratePasscode()">Generate Passcode</a>
+                        </div>
+                        @Html.ValidationMessageFor(Model => Model.Passcode, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(Model => Model.TestDate)
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(Model => Model.TestDate, new { type = "Date", @class = "inputName" })
+                        @Html.ValidationMessageFor(Model => Model.TestDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 mb-4">
+                        @Html.LabelFor(Model => Model.StartTime)
+                        @Html.TextBoxFor(Model => Model.StartTime, new { type = "Time", @class = "inputName", onchange = "getMin()" })
+                        @Html.ValidationMessageFor(Model => Model.StartTime, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 mb-4">
+                        @Html.LabelFor(Model => Model.EndTime)
+                        @Html.TextBoxFor(Model => Model.EndTime, new { type = "Time", @class = "inputName" })
+                        @Html.ValidationMessageFor(Model => Model.EndTime, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-12">
+                        <input type="submit" value="Create Questions" class="btn-dark" onclick="getMin()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+<script>
+    function GeneratePasscode() {
+        document.getElementById('Passcode').value = Math.floor(Math.random() * 80000) + 10000;
+    }
+    $(function () {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var maxDate = year + '-' + month + '-' + day;
+        $('#TestDate').attr('min', maxDate);
+    });
+    function getMin() {
+        var v = document.getElementById("TestDate").value + " " + document.getElementById("StartTime").value;
+        var d = new Date(v);
+        var h = d.getHours();
+        var m = d.getMinutes();
+        var minTime = h + ":" + m;
+        document.getElementById("EndTime").setAttribute("min", minTime);
+    }
+}
+</script>
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

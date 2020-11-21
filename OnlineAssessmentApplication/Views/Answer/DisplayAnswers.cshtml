@@ -1,0 +1,73 @@
+﻿@model IEnumerable<OnlineAssessmentApplication.ViewModel.AnswerViewModel>
+
+@{
+    ViewBag.Title = "DisplayAnswers";
+}
+
+<h2>DisplayAnswers</h2>
+
+@using (Html.BeginForm("DisplayAnswers", "Answer", FormMethod.Get))
+{
+
+}
+@{
+    int TestId = (int)ViewData["TestId"];
+}
+<p>
+    @Html.ActionLink("Back", "DisplayQuestions", "Question", new { testId = TestId, @class = "btn btn-primary" }, null)
+</p>
+<table class="table">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnswerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnswerLabel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnswerDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCorrect)
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerLabel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCorrect)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditAnswer", new { answerId = item.AnswerId })
+                @Html.ActionLink("Delete", "DeleteAnswer", new { answerId = item.AnswerId })
+            </td>
+        </tr>
+    }
+
+
+</table>

@@ -1,0 +1,67 @@
+﻿@model OnlineAssessmentApplication.ViewModel.AnswerViewModel
+
+@{
+    ViewBag.Title = "CreateAnswer";
+}
+
+<h2>CreateAnswer</h2>
+
+<div class="container">
+    @using (Html.BeginForm("CreateAnswer", "Answer", FormMethod.Post))
+    {
+        <div class="col-sm-12">
+            <div class="title" style="">CreateAnswer</div>
+            <table class="active">
+                <tr>
+                    <th>
+                        <div class="form-row">
+                            @Html.LabelFor(Model => Model.AnswerLabel)
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(Model => Model.AnswerLabel, new { @class = "inputName", placeholder = "Name of the AnswerLable" })
+                                @Html.ValidationMessageFor(Model => Model.AnswerLabel, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-row">
+                            @Html.LabelFor(Model => Model.Description)
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(Model => Model.Description, new { @class = "inputName", placeholder = "Name of the Description" })
+                                @Html.ValidationMessageFor(Model => Model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-row">
+                            @Html.LabelFor(Model => Model.Mark)
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(Model => Model.Mark, new { @class = "inputName", placeholder = "Enter the valid Mark" })
+                                @Html.ValidationMessageFor(Model => Model.Mark, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-row">
+                            @Html.LabelFor(Model => Model.IsCorrect)
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(Model => Model.IsCorrect, new { @class = "inputName", placeholder = "Correct option's Mark" })
+                                @Html.ValidationMessageFor(Model => Model.IsCorrect, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-row">
+                            Action
+                            <div class="col-md-12">
+                                <input type="submit" name="Command" value="Add" class="inputName" />
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+            </table>
+            <div class="col-md-12">
+                <input type="submit" name="Command" value="Submit" class="btn-dark" />
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessmentApplication", "OnlineAssessmentApplication\OnlineAssessmentApplication.csproj", "{A1FB8767-77FE-4649-9B4A-A79D70BB5227}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessmentApplication.DomainModel", "OnlineAssessmentApplication.DomainModel\OnlineAssessmentApplication.DomainModel.csproj", "{1A17727E-61B7-4610-9F6A-F57D838E0A2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessmentApplication.ServiceLayer", "OnlineAssessmentApplication.ServiceLayer\OnlineAssessmentApplication.ServiceLayer.csproj", "{352AA91F-78A8-42E9-B18F-C14C52A96569}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessmentApplication.Repository", "OnlineAssessmentApplication.Repository\OnlineAssessmentApplication.Repository.csproj", "{2FB089F9-A44A-4A72-BFFD-30C4BE4B6700}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessmentApplication.ViewModel", "OnlineAssessmentApplication.ViewModel\OnlineAssessmentApplication.ViewModel.csproj", "{EB2CB01F-D21D-4B06-B682-75FA16BC3BD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessmentApplicationTest", "OnlineAssessmentApplicationTest\OnlineAssessmentApplicationTest.csproj", "{E6131736-8599-442A-82DF-B02D0D8BBFD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1FB8767-77FE-4649-9B4A-A79D70BB5227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1FB8767-77FE-4649-9B4A-A79D70BB5227}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1FB8767-77FE-4649-9B4A-A79D70BB5227}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1FB8767-77FE-4649-9B4A-A79D70BB5227}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A17727E-61B7-4610-9F6A-F57D838E0A2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A17727E-61B7-4610-9F6A-F57D838E0A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A17727E-61B7-4610-9F6A-F57D838E0A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A17727E-61B7-4610-9F6A-F57D838E0A2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{352AA91F-78A8-42E9-B18F-C14C52A96569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{352AA91F-78A8-42E9-B18F-C14C52A96569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{352AA91F-78A8-42E9-B18F-C14C52A96569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{352AA91F-78A8-42E9-B18F-C14C52A96569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FB089F9-A44A-4A72-BFFD-30C4BE4B6700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FB089F9-A44A-4A72-BFFD-30C4BE4B6700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FB089F9-A44A-4A72-BFFD-30C4BE4B6700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FB089F9-A44A-4A72-BFFD-30C4BE4B6700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB2CB01F-D21D-4B06-B682-75FA16BC3BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB2CB01F-D21D-4B06-B682-75FA16BC3BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB2CB01F-D21D-4B06-B682-75FA16BC3BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB2CB01F-D21D-4B06-B682-75FA16BC3BD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6131736-8599-442A-82DF-B02D0D8BBFD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6131736-8599-442A-82DF-B02D0D8BBFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6131736-8599-442A-82DF-B02D0D8BBFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6131736-8599-442A-82DF-B02D0D8BBFD0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BD812DB-F4ED-4877-87FA-433D0B44605F}
+	EndGlobalSection
+EndGlobal

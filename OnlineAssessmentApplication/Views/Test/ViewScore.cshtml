@@ -1,0 +1,23 @@
+﻿@model IEnumerable<OnlineAssessmentApplication.ViewModel.ResultViewModel>
+
+@{
+    ViewBag.Title = "ViewScore";
+}
+
+<h2>Results</h2>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.TestName)</h5>
+                    <p class="card-text">@Html.DisplayNameFor(Model => Model.Subject): @Html.DisplayFor(modelItem => item.Subject)</p>
+                    <p class="card-text">@Html.DisplayNameFor(Model => Model.Score): @Html.DisplayFor(modelItem => item.Score)</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

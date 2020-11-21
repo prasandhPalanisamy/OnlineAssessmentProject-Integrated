@@ -1,0 +1,38 @@
+﻿@model OnlineAssessmentApplication.ViewModel.QuestionViewModel
+
+@{
+    ViewBag.Title = "CreateQuestions";
+}
+
+    <div class="container">
+        @using (Html.BeginForm("CreateQuestions", "Question", FormMethod.Post))
+        {
+
+            <div class="col-sm-12">
+                <div class="title" style="">CreateQuestions</div>
+                @*@Html.HiddenFor(Model => Model.TestId)*@
+
+                <div class="form-row">
+                    @Html.LabelFor(Model => Model.Question)
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(Model => Model.Question, new { @class = "inputName", placeholder = "Name of the Question" })
+                        @Html.ValidationMessageFor(Model => Model.Question, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <table>
+                        <tr>
+                            <th>
+                                <input type="submit" name="Command" value="Create Options" class="btn-dark" />
+                            </th>
+                            <th>
+                                @Html.ActionLink("Display Questions", "DisplayQuestions", "Question", new { testId = TempData.Peek("TestId"), @class = "btn btn-primary" }, null)
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        }
+    </div>

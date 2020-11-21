@@ -1,0 +1,123 @@
+﻿@model IEnumerable<OnlineAssessmentApplication.ViewModel.TestViewModel>
+@{ ViewBag.Title = "UpcomingTest"; }
+
+@if (TempData["Passcode_Alert"] != null)
+{
+    <p id="alert" class="h3 text-center alert alert-danger">
+        @TempData["Passcode_Alert"]
+    </p>
+}
+<h2 class="text-center m-3">Upcoming Test</h2>
+@using (Html.BeginForm("UpcomingTest", "Test", FormMethod.Get))
+{
+<div align="right">
+    @Html.TextBox("SearchBy")
+    @Html.Partial("_SubjectDropDownView", new OnlineAssessmentApplication.ViewModel.SubjectViewModel())
+    @if (HttpContext.Current.User.IsInRole("Teacher") || HttpContext.Current.User.IsInRole("Principal"))
+    {
+        @Html.Partial("_GradeDropDownView", new OnlineAssessmentApplication.ViewModel.GradeViewModel())
+    }
+
+    <input type="submit" value="Filter" class="btn btn-primary" />
+
+</div>
+}
+@if (HttpContext.Current.User.IsInRole("Teacher"))
+{
+    @Html.ActionLink("Add", "CreateTest", "Test", new { @class = "btn btn-primary" })
+
+}
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.TestName)</h5>
+                    <p class="card-text">@Html.DisplayNameFor(Model => Model.Subject): @Html.DisplayFor(modelItem => item.Subject)</p>
+                    <p>@Html.DisplayNameFor(Model => Model.Grade): @Html.DisplayFor(modelItem => item.Grade)</p>
+                    <p>@Html.DisplayNameFor(Model => Model.TestDate): @Html.DisplayFor(modelItem => item.TestDate)</p>
+                    <p>@Html.DisplayNameFor(Model => Model.StartTime): @Html.DisplayFor(modelItem => item.StartTime)</p>
+                    <p>@Html.DisplayNameFor(Model => Model.EndTime): @Html.DisplayFor(modelItem => item.EndTime)</p>
+                    <p>@Html.DisplayNameFor(Model => Model.Passcode): @Html.DisplayFor(modelItem => item.Passcode)</p>
+
+                    @if (HttpContext.Current.User.IsInRole("Student"))
+                    {<!-- Button trigger modal -->
+                        if (item.StartTime == DateTime.Now)
+                        {
+                            <a role="button" class="btn btn-success" data-toggle="modal" data-target="#myModel">
+                                Take test
+                            </a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-warning" onclick="testExpired()">Take test</button>
+                        }
+                    }
+                    else if (HttpContext.Current.User.IsInRole("Teacher"))
+                    {
+                        <p>@Html.DisplayNameFor(Model => Model.Status): @Html.DisplayFor(modelItem => item.Status)</p>
+                        @Html.ActionLink("Edit", "EditTest", new { testId = item.TestId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "DeleteTest", new { testId = item.TestId }, new { @class = "btn btn-primary" })
+                        if (item.Status != "Accepted")
+                        {
+                            @Html.ActionLink("Request Approval", "Edit", new { @class = "btn btn-primary" })
+                        }
+                    }
+                    else if (HttpContext.Current.User.IsInRole("Principal"))
+                    {
+                        <p id="Status">@Html.DisplayNameFor(Model => Model.Status): @Html.DisplayFor(modelItem => item.Status)</p>
+                        if (item.Status.Equals("InProgress") || item.Status.Equals("Rejected"))
+                        {
+                            @Html.ActionLink("Accept", "UpdateAcceptStatus", new { testId = item.TestId }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Reject", "UpdateRejectStatus", new { testId = item.TestId }, new { @class = "btn btn-success" })
+                        }
+
+
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Confirmation!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <p class="h4 mb-5">Passcode</p>
+
+                        <!-- Passcode -->
+                        @*@Html.TextBoxFor(Model=>Model.Passcode, new{ @class="form-control mb-4"})*@
+                        <input type="text" id="passcode" name="passcode" class="form-control mb-4" placeholder="Passcode">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" id="button">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+@section scripts{
+    <script type="text/javascript">
+        $("#button").click(function () {
+            var txtVal = $("#passcode").val();
+            window.location = "@Url.Action("VerifyPasscode","Test")" +
+                              "?passcode=" + txtVal;
+        });
+        $("#alert").delay(2000).fadeOut(2000);
+        function testExpired() {
+            alert("Test is not available at this moment. Please check the test date and time!")
+        }
+    </script>
+}
+
+

@@ -1,0 +1,86 @@
+﻿@model OnlineAssessmentApplication.ViewModel.UserViewModel
+@using CaptchaMvc.HtmlHelpers;
+
+@{
+    Layout = "~/Views/Shared/Front_page.cshtml";
+    ViewBag.Title = "Login-page";
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row container-fluid">
+
+        <div class="col-lg-9 ">
+            <img src="~/Content/Images/passing-NCLEX-exam-NYC.jpg" class="container-fluid front_img" />
+        </div>
+        <div class="col-lg-3">
+
+            <h2 class="m-lg-5">
+                Log In to Your Brainly Account!
+
+
+            </h2>
+
+            <div class="form-horizontal mb-lg-5">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.EmailID, htmlAttributes: new { @class = "control-label" })*@
+
+                    <div class="row">
+                        <div class="input-group-append col-lg-1">
+                            <span><i class="far fa-envelope"></i></span>
+
+                        </div>
+                        <div class="col-lg-10">
+                            @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control ", @placeholder = "Enter your Email ID" } })
+                            @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })*@
+                    <div class="row ">
+                        <div class="input-group-append col-lg-1">
+                            <span><i class="fas fa-lock"></i></span>
+
+                        </div>
+                        <div class="col-lg-10">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Enter your password" })
+                            @Html.ValidationMessageFor(model => model.Password,string.Empty, new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+             
+                <div class="form-group ">
+                    <div class="col-lg-10">
+                        @Html.MathCaptcha("Try another", "Enter the result you see above:", "Captcha is required field", true)
+
+                        <p class="text-danger">@ViewBag.Error</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <input type="submit" value="Login" class="btn btn-success col-lg-6 my-3 col-sm-4" />
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

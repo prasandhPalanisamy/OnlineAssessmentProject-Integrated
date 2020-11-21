@@ -1,0 +1,36 @@
+﻿@model OnlineAssessmentApplication.ViewModel.QuestionViewModel
+
+@{
+    ViewBag.Title = "EditQuestion";
+}
+
+<h2>EditQuestion</h2>
+<div class="container">
+
+    @using (Html.BeginForm("EditQuestion", "Question", FormMethod.Post))
+    {
+        <div class="col-sm-12">
+            <div class="createtestform">
+                @Html.HiddenFor(Model => Model.QuestionId)
+                @Html.HiddenFor(Model => Model.TestId)
+                @*@Html.TextBoxFor(Model => Model.TestId)*@
+                <div class="title">Update Question</div>
+                <div class="form-row">
+                    @Html.LabelFor(Model => Model.Question)
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(Model => Model.Question, new { @class = "inputName", placeholder = "Name of the Test" })
+                        @Html.ValidationMessageFor(Model => Model.Question, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-xs-12 col-sm-12 col-md-6 mb-4">
+                            <input type="submit" value="Save Changes" class="btn-dark" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
