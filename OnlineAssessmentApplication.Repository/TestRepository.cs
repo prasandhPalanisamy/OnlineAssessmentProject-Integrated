@@ -12,7 +12,7 @@ namespace OnlineAssessmentApplication.Repository
         IEnumerable<Test> DisplayAvailableTestDetails(FilterPanel filterPanel);
         IEnumerable<ResultViewModel> CalculateScore(ResultViewModel resultViewModel);
         bool VerifyPasscode(int passcode);
-        void CreateNewTest(Test test);
+        int CreateNewTest(Test test);
         Test GetTestByTestId(int testId);
         void UpdateTest(Test editTest);
         void DeleteTest(int testId);
@@ -26,12 +26,13 @@ namespace OnlineAssessmentApplication.Repository
         {
             db = new AssessmentDbContext();
         }
-        public void CreateNewTest(Test test) //To create new test
+        public int CreateNewTest(Test test) //To create new test
         {
 
             db.Tests.Add(test);
             db.SaveChanges();
-
+            int testId = test.TestId;
+            return testId;
         }
 
         public void UpdateTest(Test editTest)

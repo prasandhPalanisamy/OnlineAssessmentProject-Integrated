@@ -12,7 +12,7 @@ namespace OnlineAssessmentApplication.ServiceLayer
         IEnumerable<TestViewModel> DisplayAvailableTestDetails(FilterPanel filterPanel);
         IEnumerable<ResultViewModel> CalculateScore(ResultViewModel resultViewModel);
         bool VerifyPasscode(int passcode);
-        void CreateNewTest(CreateTestViewModel testViewModel);
+        int CreateNewTest(CreateTestViewModel testViewModel);
         void UpdateTest(EditTestViewModel editedData);
         void DeleteTest(int testId);
         void UpdateAcceptStatus(int testId);
@@ -25,13 +25,13 @@ namespace OnlineAssessmentApplication.ServiceLayer
         {
             this.testRepository = testRepository;
         }
-        public void CreateNewTest(CreateTestViewModel testViewModel)
+        public int CreateNewTest(CreateTestViewModel testViewModel)
         {
 
             var config = new MapperConfiguration(cfg => { cfg.CreateMap<CreateTestViewModel, Test>(); cfg.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
             var test = mapper.Map<CreateTestViewModel, Test>(testViewModel);
-            testRepository.CreateNewTest(test);
+            return testRepository.CreateNewTest(test);
 
         }
         public IEnumerable<TestViewModel> DisplayAvailableTestDetails(FilterPanel filterPanel)

@@ -24,5 +24,10 @@ function getMin() {
     var h = d.getHours();
     var m = d.getMinutes();
     var minTime = h + ":" + m;
+    if (h < 9) {
+        var minTime = "0" + h + ":" + m;
+    }
+    else
+        var minTime =  h + ":" + m;
     document.getElementById("EndTime").setAttribute("min", minTime);
 }

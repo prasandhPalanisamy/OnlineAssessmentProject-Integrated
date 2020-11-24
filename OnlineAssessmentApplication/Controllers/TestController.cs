@@ -23,23 +23,22 @@ namespace OnlineAssessmentApplication.Controllers
         // GET: Test
         public ActionResult CreateTest()
         {
-
             return View();
         }
         [HttpPost]
         [ActionName("CreateTest")]
         public ActionResult SaveTest(CreateTestViewModel newTest)//Create Test
         {
-
+            int testId = 0;
             if (ModelState.IsValid)
             {
                 newTest.UserId = Convert.ToInt32(Session["CurrentUserID"]);
                 newTest.CreatedBy = newTest.UserId;
                 newTest.CreatedTime = DateTime.Now;
-
-
-                testService.CreateNewTest(newTest);
-                return RedirectToAction("UpcomingTest");
+                
+                testId = testService.CreateNewTest(newTest);
+                TempData["TestId"] = testId;
+                return RedirectToAction("CreateQuestions", "Question");
             }
             return View();
         }
@@ -57,7 +56,7 @@ namespace OnlineAssessmentApplication.Controllers
                 editedData.ModifiedBy = Convert.ToInt32(Session["CurrentUserID"]);
                 editedData.ModifiedTime = DateTime.Now;
                 testService.UpdateTest(editedData);
-                return RedirectToAction("UpcomingTest");
+                return RedirectToAction("DisplayQuestions", "Question");
             }
             return View();
 

@@ -24,10 +24,10 @@
                     </th>
                     <th>
                         <div class="form-row">
-                            @Html.LabelFor(Model => Model.Description)
+                            @Html.LabelFor(Model => Model.AnswerDescription)
                             <div class="col-md-12">
-                                @Html.TextBoxFor(Model => Model.Description, new { @class = "inputName", placeholder = "Name of the Description" })
-                                @Html.ValidationMessageFor(Model => Model.Description, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(Model => Model.AnswerDescription, new { @class = "inputName", placeholder = "Name of the Description" })
+                                @Html.ValidationMessageFor(Model => Model.AnswerDescription, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </th>
