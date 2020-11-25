@@ -9,11 +9,20 @@ namespace OnlineAssessmentApplication.Controllers
 {
     public class AnswerController : Controller
     {
-        AnswerService answerService;
+        readonly IAnswerService answerService;
         public AnswerController()
         {
-            answerService = new AnswerService();
+
         }
+        public AnswerController(IAnswerService service)
+        {
+            this.answerService = service;
+        }
+
+        //public AnswerController()
+        //{
+        //    answerService = new AnswerService();
+        //}
         // GET: Answer
         public ActionResult CreateAnswer()
         {

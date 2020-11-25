@@ -10,10 +10,10 @@
     @Html.ActionLink("Add Question", "CreateQuestions", "Question", new { @class = "btn btn-primary" })
 </p>
 <p>
-    @Html.ActionLink("Submit", "UpcomingTest", "Test", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Submit", "UpcomingTest", "Test",null ,new { @class = "btn btn-primary" })
 </p>
 
-@using (Html.BeginForm("DisplayQuestions", "Question", FormMethod.Post ))
+@using (Html.BeginForm("DisplayQuestions", "Question", FormMethod.Post))
 {
 
 }

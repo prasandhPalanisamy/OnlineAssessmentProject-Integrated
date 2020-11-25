@@ -1,5 +1,6 @@
 ﻿using OnlineAssessmentApplication.DomainModel;
 using OnlineAssessmentApplication.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -18,14 +19,14 @@ namespace OnlineAssessmentApplication.Repository
     }
     public class QuestionRepository : IQuestionRepository
     {
-        AssessmentDbContext db;
+        readonly private AssessmentDbContext db;
         public QuestionRepository()
         {
             db = new AssessmentDbContext();
         }
         public int InsertQuestion(Questions question)
         {
-            
+            question.CreatedDate =  DateTime.Now;
             db.Questions.Add(question);
             db.SaveChanges();
             return question.QuestionId;
@@ -40,7 +41,7 @@ namespace OnlineAssessmentApplication.Repository
                 question.QuestionId = editQuestion.QuestionId;
                 question.Question = editQuestion.Question;
                 question.CreatedDate = editQuestion.CreatedDate;
-                question.ModifiedDate = editQuestion.ModifiedDate;
+                question.ModifiedDate = DateTime.Now;
                 db.SaveChanges();
             }
         }

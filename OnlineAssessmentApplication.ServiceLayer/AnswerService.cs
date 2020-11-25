@@ -16,10 +16,14 @@ namespace OnlineAssessmentApplication.ServiceLayer
     }
     public class AnswerService : IAnswerService
     {
-        AnswerRepository answerRepository;
+        readonly IAnswerRepository answerRepository;
         public AnswerService()
         {
-            answerRepository = new AnswerRepository();
+
+        }
+        public AnswerService(IAnswerRepository repository)
+        {
+            this.answerRepository = repository;
         }
         public void InsertAnswer(AnswerViewModel answerView)
         {

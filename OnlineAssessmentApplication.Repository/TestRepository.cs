@@ -28,7 +28,6 @@ namespace OnlineAssessmentApplication.Repository
         }
         public int CreateNewTest(Test test) //To create new test
         {
-
             db.Tests.Add(test);
             db.SaveChanges();
             int testId = test.TestId;

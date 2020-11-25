@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace OnlineAssessmentApplication.ServiceLayer
 {
-    interface IQuestionService
+    public interface IQuestionService
     {
         int InsertQuestion(QuestionViewModel createQuestionsViewModel);
         void EditQuestion(QuestionViewModel editData);
@@ -17,17 +17,23 @@ namespace OnlineAssessmentApplication.ServiceLayer
     }
     public class QuestionService : IQuestionService
     {
-        QuestionRepository questionRepository;
+        readonly IQuestionRepository questionRepository;
         public QuestionService()
         {
-            questionRepository = new QuestionRepository();
+
         }
+        public QuestionService(IQuestionRepository repository)
+        {
+            this.questionRepository = repository;
+        }       
+
         public int InsertQuestion(QuestionViewModel questionsViewModel)
         {
             var config = new MapperConfiguration(cfg => { cfg.CreateMap<QuestionViewModel, Questions>(); cfg.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
             Questions question = mapper.Map<QuestionViewModel, Questions>(questionsViewModel);
-            return questionRepository.InsertQuestion(question);
+            int questionId = questionRepository.InsertQuestion(question);
+            return questionId;
         }
         public void EditQuestion(QuestionViewModel editData)
         {

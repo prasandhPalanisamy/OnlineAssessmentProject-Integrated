@@ -56,7 +56,7 @@ namespace OnlineAssessmentApplication.Controllers
                 editedData.ModifiedBy = Convert.ToInt32(Session["CurrentUserID"]);
                 editedData.ModifiedTime = DateTime.Now;
                 testService.UpdateTest(editedData);
-                return RedirectToAction("DisplayQuestions", "Question");
+                return RedirectToAction("DisplayQuestions", "Question", new { testId = editedData.TestId });
             }
             return View();
 

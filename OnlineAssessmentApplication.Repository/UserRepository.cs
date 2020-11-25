@@ -27,8 +27,6 @@ namespace OnlineAssessmentApplication.Repository
     {
         readonly private AssessmentDbContext db;
 
-
-
         public UserRepository()
         {
             db = new AssessmentDbContext();

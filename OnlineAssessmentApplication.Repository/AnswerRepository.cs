@@ -7,7 +7,7 @@ using System.Web;
 
 namespace OnlineAssessmentApplication.Repository
 {
-    interface IAnswerRepository
+    public interface IAnswerRepository
     {
         void InsertAnswer(Answer answer);
         void EditAnswer(Answer editAnswer);
@@ -17,7 +17,7 @@ namespace OnlineAssessmentApplication.Repository
     }
     public class AnswerRepository : IAnswerRepository
     {
-        AssessmentDbContext db;
+        readonly private AssessmentDbContext db;
         public AnswerRepository()
         {
             db = new AssessmentDbContext();

@@ -9,10 +9,14 @@ namespace OnlineAssessmentApplication.Controllers
 {
     public class QuestionController : Controller
     {
-        QuestionService questionService;
+        readonly IQuestionService questionService;
         public QuestionController()
         {
-            questionService = new QuestionService();
+
+        }
+        public QuestionController(IQuestionService service)
+        {
+            this.questionService = service;
         }
         // GET: Question
         public ActionResult CreateQuestions()
@@ -25,6 +29,7 @@ namespace OnlineAssessmentApplication.Controllers
         {
             newQuestion.TestId = (int)TempData.Peek("TestId");
             TempData["TestId"] = newQuestion.TestId;
+            
             int questionId = 0;
             if (ModelState.IsValid)
             {
