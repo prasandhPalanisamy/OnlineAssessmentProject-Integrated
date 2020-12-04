@@ -12,7 +12,7 @@ namespace OnlineAssessmentApplication.Repository
         void InsertAnswer(Answer answer);
         void EditAnswer(Answer editAnswer);
         void DeleteAnswer(int answerId);
-        Answer GetAnswersByQuestionID(int questionId);
+        Answer GetAnswersByAnswerId(int answerId);
         IEnumerable<Answer> DisplayAnswers(int questionId);
     }
     public class AnswerRepository : IAnswerRepository
@@ -42,10 +42,10 @@ namespace OnlineAssessmentApplication.Repository
         }
         public void DeleteAnswer(int answerId)
         {
-            db.Answers.Remove(GetAnswersByQuestionID(answerId));
+            db.Answers.Remove(GetAnswersByAnswerId(answerId));
             db.SaveChanges();
         }
-        public Answer GetAnswersByQuestionID(int answerId)
+        public Answer GetAnswersByAnswerId(int answerId)
         {
             return db.Answers.Find(answerId);
         }

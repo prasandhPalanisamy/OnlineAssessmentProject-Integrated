@@ -1,67 +1,130 @@
-﻿@model OnlineAssessmentApplication.ViewModel.AnswerViewModel
+﻿@model IList<OnlineAssessmentApplication.ViewModel.AnswerViewModel>
 
 @{
     ViewBag.Title = "CreateAnswer";
 }
 
-<h2>CreateAnswer</h2>
-
 <div class="container">
     @using (Html.BeginForm("CreateAnswer", "Answer", FormMethod.Post))
     {
-        <div class="col-sm-12">
-            <div class="title" style="">CreateAnswer</div>
-            <table class="active">
+    <div class="col-sm-12">
+        <div class="title" style="">Create Answer</div>
+        <table id="submissionTable" class="table table-bordered">
+            <thead>
                 <tr>
                     <th>
                         <div class="form-row">
-                            @Html.LabelFor(Model => Model.AnswerLabel)
-                            <div class="col-md-12">
-                                @Html.TextBoxFor(Model => Model.AnswerLabel, new { @class = "inputName", placeholder = "Name of the AnswerLable" })
-                                @Html.ValidationMessageFor(Model => Model.AnswerLabel, "", new { @class = "text-danger" })
-                            </div>
+                            Answer Label
                         </div>
                     </th>
                     <th>
                         <div class="form-row">
-                            @Html.LabelFor(Model => Model.AnswerDescription)
-                            <div class="col-md-12">
-                                @Html.TextBoxFor(Model => Model.AnswerDescription, new { @class = "inputName", placeholder = "Name of the Description" })
-                                @Html.ValidationMessageFor(Model => Model.AnswerDescription, "", new { @class = "text-danger" })
-                            </div>
+                            Answer Description
                         </div>
                     </th>
                     <th>
                         <div class="form-row">
-                            @Html.LabelFor(Model => Model.Mark)
-                            <div class="col-md-12">
-                                @Html.TextBoxFor(Model => Model.Mark, new { @class = "inputName", placeholder = "Enter the valid Mark" })
-                                @Html.ValidationMessageFor(Model => Model.Mark, "", new { @class = "text-danger" })
-                            </div>
+                            Mark
                         </div>
                     </th>
                     <th>
                         <div class="form-row">
-                            @Html.LabelFor(Model => Model.IsCorrect)
-                            <div class="col-md-12">
-                                @Html.TextBoxFor(Model => Model.IsCorrect, new { @class = "inputName", placeholder = "Correct option's Mark" })
-                                @Html.ValidationMessageFor(Model => Model.IsCorrect, "", new { @class = "text-danger" })
-                            </div>
+                            IsCorrect
                         </div>
                     </th>
                     <th>
                         <div class="form-row">
                             Action
-                            <div class="col-md-12">
-                                <input type="submit" name="Command" value="Add" class="inputName" />
-                            </div>
                         </div>
                     </th>
                 </tr>
-            </table>
-            <div class="col-md-12">
-                <input type="submit" name="Command" value="Submit" class="btn-dark" />
-            </div>
-        </div>
+            </thead>
+            <tr id="tablerow0">
+                <th>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(Model =>  Model[0].AnswerLabel, new { @class = "inputName", placeholder = "Name of the AnswerLable" })
+                            @Html.ValidationMessageFor(Model =>  Model[0].AnswerLabel, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(Model => Model[0].AnswerDescription, new { @class = "inputName", placeholder = "Name of the Description" })
+                            @Html.ValidationMessageFor(Model => Model[0].AnswerDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-row">
+                        <div class="col-md-12">                           
+                            @Html.TextBoxFor(Model => Model[0].Mark, new { @class = "inputName", placeholder = "Enter the valid Mark" })
+                            @Html.ValidationMessageFor(Model => Model[0].Mark, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </th>
+                <th>
+
+                    <div class="form-row">
+                         <div class="col-md-12">
+                            <select name="[0].IsCorrect" class="dropdown-item-text">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <button type="button" class="btn btn-primary" onclick="removeTr(0);">Remove</button>
+                </th>
+
+
+            </tr>
+        </table>
+        <p>
+            <button id="add" type="button" class="btn btn-primary">Add</button>
+        </p>
+        <hr />
+        <p>
+            <input type="submit" value="Create" class="btn btn-default" />           
+            @Html.ActionLink("Back", "CreateQuestions", "Question", new { @class = "btn btn-primary" }, null)
+        </p>
+    </div>
     }
 </div>
+
+<Script>
+    var counter = 1;
+    $(function () {
+        $('#add').click(function () {
+            $('<tr id="tablerow' + counter + '"><td>' +               
+                '<input class="inputName" data-val="true" data-val-required="Answer Label is Required" name="[' + counter + '].AnswerLabel" placeholder="Name of the AnswerLable" type="text" value="" aria-describedby="[' + counter + '].AnswerLabel-error [' + counter + '].AnswerLabel-error" aria-invalid="true" required="required"/>' +
+                '<span class="field-validation-valid" data-valmsg-replace="true"  data-valmsg-for="Email"></span>' +
+                 '</td>' +
+                '<td>' +
+                '<input class="inputName" data-val="true" data-val-required="Description is Required" name="['+ counter +'].AnswerDescription" placeholder="Name of the Description" type="text" value=""  required="required" />' +
+                '</td>' +
+                '<td>' +
+                '<input class="inputName" data-val="true" data-val-number="The field Mark must be a number." data-val-required="Mark is Required" name="['+ counter +'].Mark" placeholder="Enter the valid Mark" type="text" value="" required="required" />' +
+                '</td>' +
+                '<td>' +
+                '<select name="[' + counter + '].IsCorrect" class="dropdown-item-text"> <option value="true">True</option> <option value="false">False</option> </select>' +
+                '</td>' +
+                '<td>' +
+                '<button type="button" class="btn btn-primary" onclick="removeTr(' + counter + ');">Remove</button>' +
+                '</td>' +
+                '</tr>').appendTo('#submissionTable');
+            counter++;
+            return false;
+        });
+    });
+    function removeTr(index) {
+        if (counter > 1) {
+            $('#tablerow' + index).remove();
+            counter--;
+        }
+        return false;
+    }
+</Script>
+

@@ -3,63 +3,84 @@
 @{
     ViewBag.Title = "DisplayQuestions";
 }
+<div class="title" style="">Display Questions</div>
+    
+<table>
+    <tr>
+        
+        <th>
+            <div class="form-row">
+                @Html.ActionLink("Submit", "UpcomingTest", "Test", null, new { @class = "btn btn-primary" })
+            </div>
+        </th>
 
-<h2>DisplayQuestions</h2>
+        <th>
+            <div class="form-row">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                @Html.ActionLink("Add Question", "CreateQuestions", "Question", new { @class = "btn btn-primary" })
+            </div>
+        </th>
+    </tr>
+    
+</table>
 
-<p>
-    @Html.ActionLink("Add Question", "CreateQuestions", "Question", new { @class = "btn btn-primary" })
-</p>
-<p>
-    @Html.ActionLink("Submit", "UpcomingTest", "Test",null ,new { @class = "btn btn-primary" })
-</p>
 
 @using (Html.BeginForm("DisplayQuestions", "Question", FormMethod.Post))
 {
-
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.QuestionId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Question)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TestId)
-        </th>
-        <th>
-            Action
-        </th>
-        <th>
-            Options
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestionId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Question)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TestId)
-            </td>
-
-            <td>
-                @Html.ActionLink("Edit", "EditQuestion", new { questionId = item.QuestionId })
-                @Html.ActionLink("Delete", "DeleteQuestion", new { questionId = item.QuestionId })
-            </td>
-            <td>
-                @Html.ActionLink("View Options", "DisplayAnswers", "Answer", new { questionId = item.QuestionId, testId = item.TestId }, null)
-            </td>
+            <br />
+            <th>
+               Question
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Options
+            </th>
         </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => item.QuestionId)
+                    @Html.DisplayFor(modelItem => item.Question)
+                    @Html.HiddenFor(modelItem => item.TestId)
+                </td>
 
-
-</table>
+                <td>
+                    @Html.ActionLink("Edit", "EditQuestion", new { questionId = item.QuestionId })
+                    @Html.ActionLink("Delete", "DeleteQuestion", new { questionId = item.QuestionId }, new { @class = "btn btn-primary", data_toggle = "modal", data_target = "#confirm" })
+                </td>
+                <td>
+                    @Html.ActionLink("View Options", "DisplayAnswers", "Answer", new { questionId = item.QuestionId, testId = item.TestId }, null)
+                </td>
+            </tr>
+            <!-- Modal -->
+            <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            <hr />
+                            @Html.ActionLink("Yes", "DeleteQuestion", new { questionId = item.QuestionId }, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </table>
 
 

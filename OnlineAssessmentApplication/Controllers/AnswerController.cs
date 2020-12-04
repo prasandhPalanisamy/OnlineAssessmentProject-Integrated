@@ -18,38 +18,29 @@ namespace OnlineAssessmentApplication.Controllers
         {
             this.answerService = service;
         }
-
-        //public AnswerController()
-        //{
-        //    answerService = new AnswerService();
-        //}
-        // GET: Answer
+        
         public ActionResult CreateAnswer()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult CreateAnswer(AnswerViewModel answerView, string command)
+        public ActionResult CreateAnswer(IList<AnswerViewModel> answerView)
         {
-            answerView.QuestionId = (int)TempData.Peek("QuestionId");
-            if (ModelState.IsValid)
-            {
-                answerService.InsertAnswer(answerView);
-                if (command == "Add")
+             if (ModelState.IsValid)
+            {                
+                for(int i = 0; i < answerView.Count; i++)
                 {
-                    return RedirectToAction("CreateAnswer", "Answer");
+                    answerView[i].QuestionId = (int)TempData.Peek("QuestionId");
+                    answerService.InsertAnswer(answerView[i]);
                 }
-                else if (command == "Submit")
-                {
-                    return RedirectToAction("CreateQuestions", "Question");
-                }
+                
+                return RedirectToAction("DisplayQuestions", "Question", new { testId = TempData.Peek("TestId")});
             }
-
             return View();
         }
         public ActionResult EditAnswer(int answerId)
         {
-            AnswerViewModel answer = answerService.GetAnswersByQuestionID(answerId);
+            AnswerViewModel answer = answerService.GetAnswersByAnswerId(answerId);
             return View(answer);
         }
         [HttpPost]
@@ -71,6 +62,7 @@ namespace OnlineAssessmentApplication.Controllers
             answerService.DeleteAnswer(answerId);
             return RedirectToAction("DisplayAnswers", new { questionId = QuestionId, testId = TestId });
         }
+        
         public ActionResult DisplayAnswers(int questionId, int testId)
         {
             ViewData["TestId"] = (int)testId;

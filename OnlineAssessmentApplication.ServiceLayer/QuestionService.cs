@@ -10,8 +10,8 @@ namespace OnlineAssessmentApplication.ServiceLayer
     {
         int InsertQuestion(QuestionViewModel createQuestionsViewModel);
         void EditQuestion(QuestionViewModel editData);
-        void DeleteQuestion(int questionID);
-        QuestionViewModel GetQuestionsByTestId(int questionID);
+        void DeleteQuestion(int questionId);        
+        QuestionViewModel GetQuestionsByQuestionId(int questionID);
         IEnumerable<QuestionViewModel> DisplayAllDetails(int testId);
 
     }
@@ -46,9 +46,10 @@ namespace OnlineAssessmentApplication.ServiceLayer
         {
             questionRepository.DeleteQuestion(questionID);
         }
-        public QuestionViewModel GetQuestionsByTestId(int questionID)
+        
+        public QuestionViewModel GetQuestionsByQuestionId(int questionID)
         {
-            Questions question = questionRepository.GetQuestionsByTestId(questionID);
+            Questions question = questionRepository.GetQuestionsByQuestionId(questionID);
             var config = new MapperConfiguration(cfg => { cfg.CreateMap<Questions, QuestionViewModel>(); cfg.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
             QuestionViewModel OriginalData = mapper.Map<Questions, QuestionViewModel>(question);

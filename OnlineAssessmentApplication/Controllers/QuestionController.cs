@@ -49,10 +49,9 @@ namespace OnlineAssessmentApplication.Controllers
             IEnumerable<QuestionViewModel> questions = questionService.DisplayAllDetails(testId);
             return View(questions);
         }
-
         public ActionResult EditQuestion(int questionId)
         {
-            QuestionViewModel questions = questionService.GetQuestionsByTestId(questionId);
+            QuestionViewModel questions = questionService.GetQuestionsByQuestionId(questionId);
             return View(questions);
         }
         [HttpPost]
@@ -72,5 +71,6 @@ namespace OnlineAssessmentApplication.Controllers
             questionService.DeleteQuestion(questionId);
             return RedirectToAction("DisplayQuestions", new { testId = TestId });
         }
+       
     }
 }

@@ -9,7 +9,7 @@
         {
 
             <div class="col-sm-12">
-                <div class="title" style="">CreateQuestions</div>
+                <div class="title" style="">Create Questions</div>
                 @*@Html.HiddenFor(Model => Model.TestId)*@
 
                 <div class="form-row">
@@ -23,13 +23,22 @@
                 <div class="col-md-12">
                     <table>
                         <tr>
+                            <hr />
                             <th>
-                                <input type="submit" name="Command" value="Create Options" class="btn-dark" />
+                                <div class="form-row">
+                                <input type="submit" name="Command" value="Create Options" class="btn-dark" />                                  
+                                </div>
                             </th>
+                            
                             <th>
-                                @Html.ActionLink("Display Questions", "DisplayQuestions", "Question", new { testId = TempData.Peek("TestId"), @class = "btn btn-primary" }, null)
+                                <div class="form-row">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                      @Html.ActionLink("Back", "CreateTest", "Test", new { @class = "btn btn-primary" }, null)
+                           
+                                </div>
                             </th>
                         </tr>
+                        
                     </table>
                 </div>
 

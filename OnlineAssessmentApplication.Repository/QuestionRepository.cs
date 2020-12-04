@@ -13,7 +13,7 @@ namespace OnlineAssessmentApplication.Repository
         int InsertQuestion(Questions question);
         void EditQuestion(Questions editQuestion);
         void DeleteQuestion(int testId);
-        Questions GetQuestionsByTestId(int testId);
+        Questions GetQuestionsByQuestionId(int testId);
         IEnumerable<Questions> DisplayAllQuestions(int testId);
 
     }
@@ -26,7 +26,7 @@ namespace OnlineAssessmentApplication.Repository
         }
         public int InsertQuestion(Questions question)
         {
-            question.CreatedDate =  DateTime.Now;
+            question.CreatedDate = DateTime.Now;   
             db.Questions.Add(question);
             db.SaveChanges();
             return question.QuestionId;
@@ -45,22 +45,19 @@ namespace OnlineAssessmentApplication.Repository
                 db.SaveChanges();
             }
         }
-        public void DeleteQuestion(int questionId)
-        {
-            db.Questions.Remove(GetQuestionsByTestId(questionId));
-            db.SaveChanges();
-        }
-        public Questions GetQuestionsByTestId(int questionId)
+        public Questions GetQuestionsByQuestionId(int questionId)
         {
             return db.Questions.Find(questionId);
         }
-
+        public void DeleteQuestion(int questionId)
+        {
+            db.Questions.Remove(GetQuestionsByQuestionId(questionId));
+            db.SaveChanges();
+        }       
         public IEnumerable<Questions> DisplayAllQuestions(int testId)
         {
-
             IEnumerable<Questions> allQuestions = db.Questions.Where(temp => temp.TestId == testId).ToList();
             return allQuestions;
-
         }
     }
 }

@@ -12,7 +12,7 @@ namespace OnlineAssessmentApplication.ServiceLayer
         IEnumerable<AnswerViewModel> DisplayAnswers(int questionId);
         void EditAnswer(AnswerViewModel editedData);
         void DeleteAnswer(int answerId);
-        AnswerViewModel GetAnswersByQuestionID(int answerId);
+        AnswerViewModel GetAnswersByAnswerId(int answerId);
     }
     public class AnswerService : IAnswerService
     {
@@ -52,9 +52,9 @@ namespace OnlineAssessmentApplication.ServiceLayer
             answerRepository.DeleteAnswer(answerId);
         }
 
-        public AnswerViewModel GetAnswersByQuestionID(int answerId)
+        public AnswerViewModel GetAnswersByAnswerId(int answerId)
         {
-            Answer answer = answerRepository.GetAnswersByQuestionID(answerId);
+            Answer answer = answerRepository.GetAnswersByAnswerId(answerId);
             var config = new MapperConfiguration(cfg => { cfg.CreateMap<Answer, AnswerViewModel>(); cfg.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
             AnswerViewModel OriginalData = mapper.Map<Answer, AnswerViewModel>(answer);

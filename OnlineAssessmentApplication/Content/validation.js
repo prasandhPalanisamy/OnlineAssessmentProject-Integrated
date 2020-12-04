@@ -31,3 +31,6 @@ function getMin() {
         var minTime =  h + ":" + m;
     document.getElementById("EndTime").setAttribute("min", minTime);
 }
+function goBack() {
+    window.history.back();
+}

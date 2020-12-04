@@ -63,7 +63,6 @@ namespace OnlineAssessmentApplication.Controllers
         }
         public ActionResult DeleteTest(int testId)
         {
-
             testService.DeleteTest(testId);
             return RedirectToAction("UpcomingTest");
         }
